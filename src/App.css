@@ -1,9 +1,19 @@
 /* App.css */
 
+/* Body background */
+body {
+  background-color: #fdebd0; /* Light peach */
+}
+
 /* Centered header */
 .header {
   text-align: center;
   padding: 20px 0;
+}
+
+/* Container */
+.container {
+  padding: 20px 40px; /* Increased padding on the sides */
 }
 
 /* Search bar */
@@ -19,10 +29,15 @@
 }
 
 .product {
-  background-color: #fff;
+  background-color: #f9e3d0; /* Peach */
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Enhanced box shadow */
+  transition: box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.product:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
 }
 
 .product img {
@@ -42,7 +57,7 @@
 
 /* Cart */
 .cart {
-  background-color: #f8f9fa;
+  background-color: #fdebd0; /* Light peach */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -76,7 +91,7 @@
 /* Shopping cart summary */
 .summary {
   margin-top: 20px;
-  background-color: #fff;
+  background-color: #ffe6cc; /* Light orange */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

@@ -1,4 +1,3 @@
-// Cart.js
 import React from 'react';
 
 function Cart({ cartItems, removeFromCart, updateQuantity }) {
@@ -8,11 +7,23 @@ function Cart({ cartItems, removeFromCart, updateQuantity }) {
   };
 
   const incrementQuantity = (productId) => {
-    updateQuantity(productId, cartItems[productId].quantity + 1);
+    // Check if productId exists in cartItems
+    if (cartItems[productId]) {
+      const newQuantity = cartItems[productId].quantity + 1;
+      updateQuantity(productId, newQuantity);
+    } else {
+      console.error(`Product with ID ${productId} not found in cart.`);
+    }
   };
 
   const decrementQuantity = (productId) => {
-    updateQuantity(productId, Math.max(1, cartItems[productId].quantity - 1));
+    // Check if productId exists in cartItems and quantity is greater than 1
+    if (cartItems[productId] && cartItems[productId].quantity > 1) {
+      const newQuantity = cartItems[productId].quantity - 1;
+      updateQuantity(productId, newQuantity);
+    } else {
+      console.error(`Product with ID ${productId} not found in cart or quantity cannot be decreased further.`);
+    }
   };
 
   return (
