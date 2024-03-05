@@ -64,7 +64,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="mt-5 mb-3">E-commerce App</h1>
+      <h1 className="mt-5 mb-3">E-commerce App Demo</h1>
       <Search handleSearch={handleSearch} />
       <FiltersAndSorting handleFilter={handleFilter} handleSort={handleSort} />
       <div className="row">

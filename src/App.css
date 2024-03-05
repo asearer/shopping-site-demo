@@ -1,86 +1,99 @@
 /* App.css */
-body {
-  background-color: #f8f9fa;
+
+/* Centered header */
+.header {
+  text-align: center;
+  padding: 20px 0;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+/* Search bar */
+.search-bar {
+  margin-bottom: 20px;
 }
 
+/* Product list */
 .product-list {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-.cart {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-top: 20px;
-}
-
-.shopping-cart-summary {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
 .product {
   background-color: #fff;
-  border: 1px solid #e0e0e0;
+  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 20px;
 }
 
-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.product img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.product h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
 }
 
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-h1, h2, h3 {
-  color: #333;
-}
-
-p {
+.product p {
   color: #666;
 }
 
-.pagination {
+/* Cart */
+.cart {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item {
+  margin-bottom: 10px;
+}
+
+.cart-item:last-child {
+  margin-bottom: 0;
+}
+
+.cart-item img {
+  max-width: 50px;
+  height: auto;
+}
+
+.cart-item-details {
+  margin-left: 10px;
+}
+
+.cart-item-title {
+  font-weight: bold;
+}
+
+.cart-item-price {
+  color: #666;
+}
+
+/* Shopping cart summary */
+.summary {
   margin-top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.pagination button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin-right: 5px;
+.summary-total {
+  font-weight: bold;
+  margin-top: 10px;
 }
 
-.pagination button.active {
-  background-color: #0056b3;
+/* Responsive styles */
+@media (max-width: 768px) {
+  .product-list {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .cart {
+    margin-top: 20px;
+  }
 }
