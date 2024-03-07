@@ -37,6 +37,7 @@ function Cart({ cartItems, removeFromCart, updateQuantity }) {
 
   return (
     <div className="cart">
+      <div class="cart-content">
       <h2>Cart</h2>
       {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
@@ -54,6 +55,7 @@ function Cart({ cartItems, removeFromCart, updateQuantity }) {
           ))}
         </ul>
       )}
+      </div>
     </div>
   );
 }
