@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Product from './Product';
+import Cart from './Cart';
 
 const products = [
   { id: 1, name: 'Product 1', price: 10, description: 'Description of Product 1', images: ['image1.jpg', 'image2.jpg'] },
@@ -7,11 +9,12 @@ const products = [
   // Add more products...
 ];
 
-const PRODUCTS_PER_PAGE = 3; // Number of products to display per page
+const PRODUCTS_PER_PAGE = 3;
 
-function Products({ addToCart }) {
+function Products() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
 
   const indexOfLastProduct = currentPage * PRODUCTS_PER_PAGE;
   const indexOfFirstProduct = indexOfLastProduct - PRODUCTS_PER_PAGE;
@@ -31,38 +34,53 @@ function Products({ addToCart }) {
   };
 
   const handleAddToCart = (productId) => {
-    // Add your addToCart functionality here
-    console.log(`Adding product with ID ${productId} to cart`);
+    const productToAdd = products.find(product => product.id === productId);
+    setCartItems(prevItems => [...prevItems, productToAdd]);
+  };
+
+  const handleRemoveFromCart = (productId) => {
+    setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
+  };
+
+  const handleUpdateQuantity = (productId, newQuantity) => {
+    // Implement your updateQuantity logic here
+    console.log(`Updating quantity of product with ID ${productId} to ${newQuantity}`);
   };
 
   return (
-    <div>
-      {selectedProduct ? (
+    <div className="container">
+      <div className="row">
+        <div className="col-md-8">
+          <div className="product-list">
+            <h2>Products</h2>
+            {currentProducts.map(product => (
+              <Product 
+                key={product.id} 
+                product={product} 
+                addToCart={handleAddToCart} 
+                viewProductDetails={viewProductDetails} 
+              />
+            ))}
+            <div className="pagination">
+              {Array.from({ length: Math.ceil(products.length / PRODUCTS_PER_PAGE) }, (_, index) => (
+                <button key={index + 1} onClick={() => paginate(index + 1)}>
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4">
+          {/* Pass removeFromCart and updateQuantity functions as props */}
+          <Cart cartItems={cartItems} removeFromCart={handleRemoveFromCart} updateQuantity={handleUpdateQuantity} />
+        </div>
+      </div>
+      {selectedProduct && (
         <div className="product">
           <h3>{selectedProduct.name}</h3>
           <p>${selectedProduct.price}</p>
           <button onClick={() => handleAddToCart(selectedProduct.id)}>Add to Cart</button>
           <button onClick={closeProductDetails}>Close</button>
-        </div>
-      ) : (
-        <div className="product-list">
-          <h2>Products</h2>
-          {currentProducts.map(product => (
-            <div key={product.id} className="product">
-              <h3>{product.name}</h3>
-              <p>${product.price}</p>
-              <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
-              <button onClick={() => viewProductDetails(product.id)}>View Details</button>
-            </div>
-          ))}
-          {/* Pagination */}
-          <div className="pagination">
-            {Array.from({ length: Math.ceil(products.length / PRODUCTS_PER_PAGE) }, (_, index) => (
-              <button key={index + 1} onClick={() => paginate(index + 1)}>
-                {index + 1}
-              </button>
-            ))}
-          </div>
         </div>
       )}
     </div>

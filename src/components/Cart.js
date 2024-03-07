@@ -43,10 +43,8 @@ function Cart({ cartItems, removeFromCart, updateQuantity }) {
               <div className="d-flex align-items-center justify-content-between">
                 <span>{item.name} - ${item.price}</span>
                 <div className="d-flex align-items-center">
-                  <button className="btn btn-primary mx-1" onClick={() => decrementQuantity(item.id)}>-</button>
-                  <input type="number" min="1" value={item.quantity} onChange={(event) => handleQuantityChange(item.id, event)} className="form-control mx-1" />
-                  <button className="btn btn-primary mx-1" onClick={() => incrementQuantity(item.id)}>+</button>
-                  {/* <button className="btn btn-success mx-1" onClick={() => addToCart(item.id)}>Add to Cart</button> */}
+                   
+                  
                   <button className="btn btn-danger mx-1" onClick={() => removeFromCart(item.id)}>Remove</button>
                 </div>
               </div>
