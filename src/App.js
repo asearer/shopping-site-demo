@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import './App.css';
+import './App.css'; // Import your CSS file with Shopify-like styles
+import Home from './components/Home'; // Import the Home component
+import Products from './components/Products'; // Import the Products component
+import About from './components/About'; // Import the About component
+import Contact from './components/Contact'; // Import the Contact component
 import ProductList from './components/ProductList';
 import Cart from './components/Cart';
 import Search from './components/Search';
@@ -12,11 +16,9 @@ function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const addToCart = (product) => {
-    // Check if the product is already in the cart
     const existingItem = cartItems.find(item => item.id === product.id);
 
     if (existingItem) {
-      // If the product is already in the cart, update its quantity
       const updatedCartItems = cartItems.map(item => {
         if (item.id === product.id) {
           return { ...item, quantity: item.quantity + 1 };
@@ -25,7 +27,6 @@ function App() {
       });
       setCartItems(updatedCartItems);
     } else {
-      // If the product is not in the cart, add it with quantity 1
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
   };
@@ -48,35 +49,56 @@ function App() {
   };
 
   const handleSearch = (query) => {
-    // Handle search functionality
     console.log('Search query:', query);
   };
 
   const handleFilter = (name, value) => {
-    // Handle filter functionality
     console.log(`Filter by ${name}: ${value}`);
   };
 
   const handleSort = (value) => {
-    // Handle sort functionality
     console.log('Sort by:', value);
   };
 
   return (
     <div className="container">
-      <h1 className="mt-5 mb-3">E-commerce App Demo</h1>
-      <Search handleSearch={handleSearch} />
-      <FiltersAndSorting handleFilter={handleFilter} handleSort={handleSort} />
-      <div className="row">
-        <div className="col-lg-8">
-          <ProductList addToCart={addToCart} />
+      <header>
+        <div className="header-content">
+          <h1 className="logo">E-commerce App Demo</h1>
+          <nav className="navbar">
+            <ul>
+              <li><Home /></li>
+              <li><Products /></li>
+              <li><About /></li>
+              <li><Contact /></li>
+            </ul>
+          </nav>
         </div>
-        <div className="col-lg-4">
-          <Cart cartItems={cartItems} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />
-          <ShoppingCartSummary cartItems={cartItems} />
+      </header>
+      <main>
+        <Search handleSearch={handleSearch} />
+        <FiltersAndSorting handleFilter={handleFilter} handleSort={handleSort} />
+        <div className="row">
+          <div className="col-lg-8">
+            <ProductList addToCart={addToCart} />
+          </div>
+          <div className="col-lg-4">
+            <Cart cartItems={cartItems} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />
+            <ShoppingCartSummary cartItems={cartItems} />
+          </div>
         </div>
-      </div>
-      {selectedProduct && <ProductDetails product={selectedProduct} />}
+        {selectedProduct && <ProductDetails product={selectedProduct} />}
+      </main>
+      <footer>
+        <div className="container">
+          <p>&copy; 2024 E-commerce App Demo. All rights reserved.</p>
+          <div className="footer-links">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Refund Policy</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
