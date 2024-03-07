@@ -7,9 +7,9 @@ function Cart({ cartItems, removeFromCart, updateQuantity }) {
   };
 
   const incrementQuantity = (productId) => {
-    // Check if productId exists in cartItems
-    if (cartItems[productId]) {
-      const newQuantity = cartItems[productId].quantity + 1;
+    const cartItem = cartItems.find(item => item.id === productId);
+    if (cartItem) {
+      const newQuantity = cartItem.quantity + 1;
       updateQuantity(productId, newQuantity);
     } else {
       console.error(`Product with ID ${productId} not found in cart.`);
@@ -17,9 +17,9 @@ function Cart({ cartItems, removeFromCart, updateQuantity }) {
   };
 
   const decrementQuantity = (productId) => {
-    // Check if productId exists in cartItems and quantity is greater than 1
-    if (cartItems[productId] && cartItems[productId].quantity > 1) {
-      const newQuantity = cartItems[productId].quantity - 1;
+    const cartItem = cartItems.find(item => item.id === productId);
+    if (cartItem && cartItem.quantity > 1) {
+      const newQuantity = cartItem.quantity - 1;
       updateQuantity(productId, newQuantity);
     } else {
       console.error(`Product with ID ${productId} not found in cart or quantity cannot be decreased further.`);
@@ -29,11 +29,11 @@ function Cart({ cartItems, removeFromCart, updateQuantity }) {
   return (
     <div className="cart">
       <h2>Cart</h2>
-      {Object.keys(cartItems).length === 0 ? (
+      {cartItems.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
         <ul>
-          {Object.values(cartItems).map(item => (
+          {cartItems.map(item => (
             <li key={item.id}>
               <div className="d-flex align-items-center justify-content-between">
                 <span>{item.name} - ${item.price}</span>
