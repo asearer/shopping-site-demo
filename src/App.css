@@ -12,9 +12,11 @@ body {
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto; /* Center horizontally */
   padding: 0 15px;
+  text-align: center; /* Center the content */
 }
+
 
 /* Header Styles */
 
