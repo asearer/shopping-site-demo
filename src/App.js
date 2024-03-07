@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './App.css'; // Import your CSS file with Shopify-like styles
+import './App.css'; 
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import Home from './components/Home'; // Import the Home component
-import Products from './components/Products'; // Import the Products component
-import About from './components/About'; // Import the About component
-import Contact from './components/Contact'; // Import the Contact component
+import Home from './components/Home'; 
+import Products from './components/Products'; 
+import About from './components/About'; 
+import Contact from './components/Contact'; 
 import ProductList from './components/ProductList';
 import Cart from './components/Cart';
 import Search from './components/Search';
