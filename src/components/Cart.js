@@ -31,6 +31,10 @@ function Cart({ cartItems, removeFromCart, updateQuantity }) {
     }
   };
 
+  const handleRemoveFromCart = (productId) => {
+    removeFromCart(productId); // Call the removeFromCart function with productId
+  };
+
   return (
     <div className="cart">
       <h2>Cart</h2>
@@ -43,9 +47,7 @@ function Cart({ cartItems, removeFromCart, updateQuantity }) {
               <div className="d-flex align-items-center justify-content-between">
                 <span>{item.name} - ${item.price}</span>
                 <div className="d-flex align-items-center">
-                   
-                  
-                  <button className="btn btn-danger mx-1" onClick={() => removeFromCart(item.id)}>Remove</button>
+                  <button className="btn btn-danger mx-1" onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
                 </div>
               </div>
             </li>
