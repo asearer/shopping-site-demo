@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css'; // Import your CSS file with Shopify-like styles
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './components/Home'; // Import the Home component
 import Products from './components/Products'; // Import the Products component
 import About from './components/About'; // Import the About component
@@ -61,45 +62,53 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <header>
-        <div className="header-content">
-          <h1 className="logo">E-commerce App Demo</h1>
-          <nav className="navbar">
-            <ul>
-              <li><Home /></li>
-              <li><Products /></li>
-              <li><About /></li>
-              <li><Contact /></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-      <main>
-        <Search handleSearch={handleSearch} />
-        <FiltersAndSorting handleFilter={handleFilter} handleSort={handleSort} />
-        <div className="row">
-          <div className="col-lg-8">
-            <ProductList addToCart={addToCart} />
+    <Router>
+      <div className="container">
+        <header>
+          <div className="header-content">
+            <h1 className="logo">E-commerce App Demo</h1>
+            <nav className="navbar">
+              <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/Products">Products</Link></li>
+                <li><Link to="/About">About</Link></li>
+                <li><Link to="/Contact">Contact</Link></li>
+              </ul>
+            </nav>
           </div>
-          <div className="col-lg-4">
-            <Cart cartItems={cartItems} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />
-            <ShoppingCartSummary cartItems={cartItems} />
+        </header>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+          <Search handleSearch={handleSearch} />
+          <FiltersAndSorting handleFilter={handleFilter} handleSort={handleSort} />
+          <div className="row">
+            <div className="col-lg-8">
+              <ProductList addToCart={addToCart} />
+            </div>
+            <div className="col-lg-4">
+              <Cart cartItems={cartItems} removeFromCart={removeFromCart} updateQuantity={updateQuantity} />
+              <ShoppingCartSummary cartItems={cartItems} />
+            </div>
           </div>
-        </div>
-        {selectedProduct && <ProductDetails product={selectedProduct} />}
-      </main>
-      <footer>
-        <div className="container">
-          <p>&copy; 2024 E-commerce App Demo. All rights reserved.</p>
-          <div className="footer-links">
-            <a href="#">Terms of Service</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Refund Policy</a>
+          {selectedProduct && <ProductDetails product={selectedProduct} />}
+        </main>
+        <footer>
+          <div className="container">
+            <p>&copy; 2024 E-commerce App Demo. All rights reserved.</p>
+            <div className="footer-links">
+              <a href="#">Terms of Service</a>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Refund Policy</a>
+            </div>
           </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </Router>
   );
 }
 
